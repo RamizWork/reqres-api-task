@@ -1,15 +1,17 @@
 <mat-card class="resource__card">
   <mat-card-content class="resource__content">
-    <div>
+    <div [style.color]="color">
       {{resource?.name}}
     </div>
-    <div class="resource__content_color">
+    <div [style.color]="color" class="resource__content_color">
       {{resource?.color}}
     </div>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button>LIKE</button>
+    <button mat-button color="basic" (click)="resetColor()">Reset color</button>
+    <button mat-button color="primary" (click)="changeColor()">Change color</button>
   </mat-card-actions>
 </mat-card>
+
 
 

@@ -1,4 +1,4 @@
-import {UserInterface} from "../interfaces/user.interface";
+import {UserInterface} from "./user.interface";
 
 export interface UsersResponseInterface {
   page: number,

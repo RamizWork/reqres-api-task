@@ -7,6 +7,7 @@ import {ResourceInterface} from "../../../interfaces/resource.interface";
   styleUrls: ['./preview-resource.component.scss']
 })
 export class PreviewResourceComponent implements OnInit {
+  color: string | undefined;
 
   @Input() resource: ResourceInterface | undefined;
   constructor() { }
@@ -14,4 +15,11 @@ export class PreviewResourceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeColor(): void {
+    this.color = this.resource?.color;
+  }
+
+  resetColor(): void {
+    this.color = undefined;
+  }
 }
