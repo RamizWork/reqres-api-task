@@ -1,0 +1,15 @@
+.user__card {
+  margin-bottom: 10px;
+  width: 600px;
+  height: 100px;
+
+  .user__content {
+    font-size: 20px;
+
+    .user__content_email {
+      margin-top: 10px;
+      font-size: 15px;
+    }
+  }
+}
+

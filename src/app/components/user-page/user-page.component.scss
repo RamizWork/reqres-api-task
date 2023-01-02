@@ -1,0 +1,39 @@
+.mat-card.example-card {
+  width: 500px;
+  margin: 30px auto;
+
+  .user__card {
+    display: flex;
+
+    .user__info {
+      margin-left: 50px;
+      .user__email {
+        font-size: 20px;
+      }
+      .user__name {
+        .mat-card-title {
+          font-size: 25px;
+        }
+        .mat-card-subtitle {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .user__card_avatar {
+      width: 150px;
+      height: auto;
+
+      .user__img {
+        width: 100%;
+        border-radius: 50%;
+        padding: 10px 0 0 10px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.mat-card-header-text {
+  display: none;
+}

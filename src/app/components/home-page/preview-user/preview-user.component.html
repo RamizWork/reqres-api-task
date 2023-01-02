@@ -1,0 +1,14 @@
+<mat-card class="user__card">
+  <mat-card-content class="user__content">
+    <div>
+      {{user?.first_name}} {{user?.last_name}}
+    </div>
+    <div class="user__content_email">
+      {{user?.email}}
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button [routerLink]="['user', user?.id]">OPEN</button>
+  </mat-card-actions>
+</mat-card>
+

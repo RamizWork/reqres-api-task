@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+
+  .container__resource {
+    display: flex;
+    padding-top: 30px;
+    flex-direction: column;
+  }
+  .container__user {
+    display: flex;
+    padding-top: 30px;
+    flex-direction: column;
+  }
+}
+

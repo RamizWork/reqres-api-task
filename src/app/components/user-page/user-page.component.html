@@ -1,0 +1,22 @@
+<ng-container *ngIf="userDetails$ | async as userDetails">
+  <mat-card class="example-card">
+    <mat-card-header class="user__card">
+      <div mat-card-avatar class="user__card_avatar">
+        <img mat-card-image class="user__img" [src]="userDetails.data.avatar" alt="Photo of a Shiba Inu">
+      </div>
+      <div class="user__info">
+        <div class="user__name">
+          <mat-card-title>{{userDetails.data.first_name}}</mat-card-title>
+          <mat-card-subtitle>{{userDetails.data.last_name}}</mat-card-subtitle>
+        </div>
+        <div class="user__email">
+          {{userDetails.data.email}}
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-button color="primary" [routerLink]="['']">Go back</button>
+      <button mat-button color="warn">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
