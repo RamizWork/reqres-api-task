@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 
-import {ListResourcesInterface} from "../../interfaces/listResources.interface";
 import {DataService} from "../../services/data.service";
-import {UserInterface} from "../../interfaces/user.interface";
+import {ListResourcesInterface} from "../../interfaces/listResources.interface";
 import {UsersResponseInterface} from "../../interfaces/usersResponse.interface";
 
 
@@ -22,5 +21,27 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.resourceData$ = this.dataService.loadResourcesData();
     this.usersData$ = this.dataService.loadUsersDataFromApi();
+  }
+
+  nextPage() {
+    const usersResponse: UsersResponseInterface | null = this.dataService.usersDataFromApi$.getValue();
+
+    if (usersResponse) {
+      const currentPage = usersResponse.page + 1;
+
+      this.usersData$ = this.dataService.loadUsersDataFromApi(currentPage);
+      this.resourceData$ = this.dataService.loadResourcesData(currentPage);
+    }
+  }
+
+  previewPage(): void {
+    const userResponse: UsersResponseInterface | null = this.dataService.usersDataFromApi$.getValue();
+
+    if (userResponse) {
+      const currentPage = userResponse.page - 1;
+
+      this.usersData$ = this.dataService.loadUsersDataFromApi(currentPage);
+      this.resourceData$ = this.dataService.loadResourcesData(currentPage);
+    }
   }
 }

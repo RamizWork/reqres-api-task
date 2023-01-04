@@ -5,5 +5,6 @@ export interface UserDetailsResponseInterface {
   support: {
     url: string;
     text: string
-  }
+  };
+  job?: string;
 }

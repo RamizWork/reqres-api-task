@@ -2,18 +2,25 @@
   width: 500px;
   margin: 30px auto;
 
+  .button__update {
+    color: #9d9d0f;
+  }
+
   .user__card {
     display: flex;
 
     .user__info {
       margin-left: 50px;
+
       .user__email {
         font-size: 20px;
       }
+
       .user__name {
         .mat-card-title {
           font-size: 25px;
         }
+
         .mat-card-subtitle {
           font-size: 20px;
         }

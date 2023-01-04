@@ -12,6 +12,11 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {PreviewUserComponent} from './components/home-page/preview-user/preview-user.component';
 import {PreviewResourceComponent} from './components/home-page/preview-resource/preview-resource.component';
+import { ModalWindowComponent } from './components/user-page/modal-window/modal-window.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,16 +24,21 @@ import {PreviewResourceComponent} from './components/home-page/preview-resource/
     HomePageComponent,
     UserPageComponent,
     PreviewUserComponent,
-    PreviewResourceComponent
+    PreviewResourceComponent,
+    ModalWindowComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule
+    ],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

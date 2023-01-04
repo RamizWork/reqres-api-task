@@ -1,15 +1,30 @@
-<div class="container">
+<ng-container *ngIf="usersData$ | async as usersData">
+  <div class="container">
 
-  <div class="container__user">
-    <ng-container *ngIf="usersData$ | async as usersData">
-      <app-preview-user *ngFor="let user of usersData.data" [user]="user"></app-preview-user>
-    </ng-container>
+    <div class="container__cards">
+      <div class="container__user">
+        <app-preview-user *ngFor="let user of usersData.data" [user]="user"></app-preview-user>
+      </div>
+
+      <div class="container__resource">
+        <ng-container *ngIf="resourceData$ | async as resourceData">
+          <app-preview-resource *ngFor="let resource of resourceData.data" [resource]="resource"></app-preview-resource>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button class="arrow__left arrow"
+              [ngClass]="{'arrow__disabled_left': usersData.page === 1}"
+              [disabled]="usersData.page === 1"
+              (click)="previewPage()"
+      ></button>
+      <button class="arrow__right arrow"
+              [ngClass]="{'arrow__disabled_right': usersData.page === usersData.total_pages}"
+              [disabled]="usersData.page === usersData.total_pages"
+              (click)="nextPage()"
+      ></button>
+    </div>
+
   </div>
-
-  <div class="container__resource">
-    <ng-container *ngIf="resourceData$ | async as resourceData">
-      <app-preview-resource *ngFor="let resource of resourceData.data" [resource]="resource"></app-preview-resource>
-    </ng-container>
-  </div>
-
-</div>
+</ng-container>
