@@ -4,7 +4,7 @@ export interface UserDetailsResponseInterface {
   data: UserInterface;
   support: {
     url: string;
-    text: string
+    text: string;
   };
   job?: string;
 }

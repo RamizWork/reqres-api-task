@@ -1,10 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DataService} from "../../../services/data.service";
 import {Observable} from "rxjs";
-import {UserDetailsResponseInterface} from "../../../interfaces/userDetailsResponse.interface";
 import {tap} from "rxjs/operators";
+
+import {DataService} from "../../../services/data.service";
+import {UserDetailsResponseInterface} from "../../../interfaces/userDetailsResponse.interface";
+import {ChangeUserDataInterface} from "../../../interfaces/changeUserData.interface";
 
 @Component({
   selector: 'app-modal-window',
@@ -13,7 +15,7 @@ import {tap} from "rxjs/operators";
 })
 export class ModalWindowComponent implements OnInit {
   form: FormGroup | any;
-  changeUserData$: Observable<any> | undefined;
+  changeUserData$: Observable<ChangeUserDataInterface> | undefined;
 
   constructor(public dialogRef: MatDialogRef<ModalWindowComponent>, @Inject(MAT_DIALOG_DATA) public data: UserDetailsResponseInterface, private dataService: DataService) {
   }
@@ -25,7 +27,7 @@ export class ModalWindowComponent implements OnInit {
   initializeForm(): void {
     this.form = new FormGroup({
       name: new FormControl(this.data.data.first_name, Validators.required),
-      job: new FormControl(this.data.job, Validators.required)
+      job: new FormControl(this.data.job)
     });
   }
 

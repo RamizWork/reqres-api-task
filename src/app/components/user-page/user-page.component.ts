@@ -1,12 +1,13 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Observable} from "rxjs";
-import {switchMap, tap} from "rxjs/operators";
+import {map, switchMap, tap} from "rxjs/operators";
 
 import {DataService} from "../../services/data.service";
 import {UserDetailsResponseInterface} from "../../interfaces/userDetailsResponse.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalWindowComponent} from "./modal-window/modal-window.component";
+import {ChangeUserDataInterface} from "../../interfaces/changeUserData.interface";
 
 @Component({
   selector: 'app-user-page',
@@ -16,12 +17,14 @@ import {ModalWindowComponent} from "./modal-window/modal-window.component";
 })
 export class UserPageComponent implements OnInit {
   userDetails$: Observable<UserDetailsResponseInterface> | undefined;
+  getUserDetails$: Observable<UserDetailsResponseInterface | null> | undefined;
   userDetails: UserDetailsResponseInterface | undefined;
 
   constructor(private route: ActivatedRoute, private dataService: DataService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    this.getUserDetails$ = this.dataService.getUserDetails();
     this.userDetails$ = this.route.params
       .pipe(
         switchMap((params: Params): Observable<UserDetailsResponseInterface> => {

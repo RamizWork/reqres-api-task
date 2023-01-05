@@ -1,4 +1,4 @@
-<ng-container *ngIf="userDetails$ | async as userDetails">
+<ng-container *ngIf="getUserDetails$ | async as userDetails">
   <mat-card class="example-card">
     <mat-card-header class="user__card">
       <div mat-card-avatar class="user__card_avatar">
@@ -12,6 +12,9 @@
         <div class="user__email">
           {{userDetails.data.email}}
         </div>
+        <div class="user__job" *ngIf="userDetails.job">
+          {{userDetails.job}}
+        </div>
       </div>
     </mat-card-header>
     <mat-card-actions align="end">
@@ -21,3 +24,4 @@
     </mat-card-actions>
   </mat-card>
 </ng-container>
+<ng-container *ngIf="userDetails$ | async"></ng-container>

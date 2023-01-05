@@ -11,6 +11,7 @@ import {ChangeUserDataInterface} from "../interfaces/changeUserData.interface";
 @Injectable()
 export class DataService {
   usersDataFromApi$: BehaviorSubject<UsersResponseInterface | null> = new BehaviorSubject<UsersResponseInterface | null>(null);
+  usersData$: BehaviorSubject<UserDetailsResponseInterface | null> = new BehaviorSubject<UserDetailsResponseInterface | null>(null);
 
   constructor(private http: HttpClient) {
   }
@@ -40,15 +41,38 @@ export class DataService {
   }
 
   loadUserDetailsById(id: number): Observable<UserDetailsResponseInterface> {
-    return this.http.get<UserDetailsResponseInterface>(`https://reqres.in/api/users/${id}`);
+    return this.http.get<UserDetailsResponseInterface>(`https://reqres.in/api/users/${id}`)
+      .pipe(
+        tap((value) => {
+          this.usersData$.next(value);
+        })
+      );
   }
 
   changeUserData(id: number, name: string, job: string | undefined): Observable<ChangeUserDataInterface> {
     return this.http.post<ChangeUserDataInterface>(`https://reqres.in/api/users/${id}`, {name: name, job: job})
       .pipe(
         tap((value) => {
+            const currentUserDetails: UserDetailsResponseInterface | null = this.usersData$.getValue();
+            const newUserDetails: UserDetailsResponseInterface = {
+              ...currentUserDetails,
+              support: {
+                ...currentUserDetails!.support
+              },
+              data: {
+                ...currentUserDetails!.data,
+                first_name: name
+              },
+              job
+            };
 
-        })
+            this.usersData$.next(newUserDetails);
+          }
+        )
       );
+  }
+
+  getUserDetails(): Observable<UserDetailsResponseInterface | null> {
+    return this.usersData$.asObservable();
   }
 }
