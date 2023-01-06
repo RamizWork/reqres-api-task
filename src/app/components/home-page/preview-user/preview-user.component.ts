@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+
 import {UserInterface} from "../../../interfaces/user.interface";
 
 @Component({
@@ -9,7 +10,8 @@ import {UserInterface} from "../../../interfaces/user.interface";
 export class PreviewUserComponent implements OnInit {
   @Input() user: UserInterface | undefined;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -3,11 +3,11 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {Observable, Subscription} from "rxjs";
 import {switchMap, tap} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 import {DataService} from "../../services/data.service";
 import {ModalWindowComponent} from "./modal-window/modal-window.component";
 import {UserDetailsResponseInterface} from "../../interfaces/userDetailsResponse.interface";
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-user-page',
@@ -35,7 +35,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
     this.userDetails$ = this.route.params
       .pipe(
         switchMap((params: Params): Observable<UserDetailsResponseInterface> => {
-            return this.dataService.loadUserDetailsById(params['id'])
+            return this.dataService.loadUserDetailsById(params['id']);
           }
         ),
         tap(value => {
@@ -57,7 +57,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
       this.toaster.success('User card deleted');
       this.router.navigate(['']);
     });
-
   }
 
   ngOnDestroy() {

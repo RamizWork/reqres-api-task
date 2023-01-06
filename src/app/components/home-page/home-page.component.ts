@@ -30,7 +30,6 @@ export class HomePageComponent implements OnInit {
       const currentPage = usersResponse.page + 1;
 
       this.usersData$ = this.dataService.loadUsersDataFromApi(currentPage);
-      this.resourceData$ = this.dataService.loadResourcesData(currentPage);
     }
   }
 
@@ -41,7 +40,6 @@ export class HomePageComponent implements OnInit {
       const currentPage = userResponse.page - 1;
 
       this.usersData$ = this.dataService.loadUsersDataFromApi(currentPage);
-      this.resourceData$ = this.dataService.loadResourcesData(currentPage);
     }
   }
 }

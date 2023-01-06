@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+
 import {ResourceInterface} from "../../../interfaces/resource.interface";
 
 @Component({
@@ -10,7 +11,9 @@ export class PreviewResourceComponent implements OnInit {
   color: string | undefined;
 
   @Input() resource: ResourceInterface | undefined;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
