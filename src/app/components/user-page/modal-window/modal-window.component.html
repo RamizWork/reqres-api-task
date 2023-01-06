@@ -16,9 +16,9 @@
     </mat-form-field>
     </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="modalClose()">No Thanks</button>
-    <button mat-button (click)="formSubmit()" [disabled]="!!form.invalid" cdkFocusInitial>Ok</button>
+  <div mat-dialog-actions class="form__button">
+    <button mat-raised-button (click)="modalClose()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="formSubmit()" [disabled]="!!form.invalid" cdkFocusInitial>Update</button>
   </div>
 </form>
 <ng-container *ngIf="changeUserData$ | async"></ng-container>

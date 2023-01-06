@@ -72,6 +72,10 @@ export class DataService {
       );
   }
 
+  deleteUser(userId: number): Observable<Response> {
+    return this.http.delete<Response>(`https://reqres.in/api/users/${userId}`);
+  }
+
   getUserDetails(): Observable<UserDetailsResponseInterface | null> {
     return this.usersData$.asObservable();
   }

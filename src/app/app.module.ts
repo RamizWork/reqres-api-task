@@ -17,6 +17,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ToastrModule.forRoot()
     ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import {tap} from "rxjs/operators";
 import {DataService} from "../../../services/data.service";
 import {UserDetailsResponseInterface} from "../../../interfaces/userDetailsResponse.interface";
 import {ChangeUserDataInterface} from "../../../interfaces/changeUserData.interface";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-modal-window',
@@ -17,7 +18,12 @@ export class ModalWindowComponent implements OnInit {
   form: FormGroup | any;
   changeUserData$: Observable<ChangeUserDataInterface> | undefined;
 
-  constructor(public dialogRef: MatDialogRef<ModalWindowComponent>, @Inject(MAT_DIALOG_DATA) public data: UserDetailsResponseInterface, private dataService: DataService) {
+  constructor(
+    public dialogRef: MatDialogRef<ModalWindowComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: UserDetailsResponseInterface,
+    private dataService: DataService,
+    private toastr: ToastrService
+  ) {
   }
 
   ngOnInit(): void {
@@ -39,6 +45,7 @@ export class ModalWindowComponent implements OnInit {
     this.changeUserData$ = this.dataService.changeUserData(this.data.data.id, this.form.value.name, this.form.value.job)
       .pipe(
         tap(() => {
+            this.toastr.success('User data changed');
             this.modalClose();
           }
         )

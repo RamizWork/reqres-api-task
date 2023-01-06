@@ -1,3 +1,11 @@
 mat-form-field {
   width: 100%;
 }
+
+.form__button {
+  justify-content: end;
+  .form__button_update {
+    color: white;
+    background: green;
+  }
+}

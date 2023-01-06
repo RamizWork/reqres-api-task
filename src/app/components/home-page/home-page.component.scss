@@ -20,34 +20,44 @@
   }
 
   .pagination {
-    margin: 0 auto;
+    justify-content: end;
     display: flex;
+    align-items: center;
+
+    .pagination__number_page {
+      display: flex;
+      justify-content: center;
+      margin: 0 10px;
+      font-size: 17px;
+      color: #4949ef;
+    }
+
+    .pagination__button {
+      height: 40px;
+      width: 40px;
+      border-radius: 8px;
+      border: 1px solid #d2d2d2;
+    }
 
     .arrow {
       cursor: pointer;
+      align-items: center;
       border: none;
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
     }
 
     .arrow__left {
       transform: rotate(180deg);
-      background: url("./../../../assets/arrow_rigth.svg") center / contain no-repeat;
-    }
-
-    .arrow__disabled_left {
-      transform: rotate(0deg);
-      background: url("./../../../assets/arrow_left.svg") center / contain no-repeat;
+      height: 8px;
+      width: 14px;
     }
 
     .arrow__right {
-      background: url("./../../../assets/arrow_rigth.svg") center / contain no-repeat;
+      height: 8px;
+      width: 14px;
     }
 
-    .arrow__disabled_right {
-      transform: rotate(180deg);
-      background: url("./../../../assets/arrow_left.svg") center / contain no-repeat;
-    }
   }
 
 }
