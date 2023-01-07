@@ -1,24 +1,23 @@
 <form [formGroup]="form">
   <div mat-dialog-content>
-    <div>
       <p>Enter name for change name user</p>
       <mat-form-field appearance="fill">
         <mat-label>Full name</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
-    </div>
 
-    <div>
       <p>Enter new job for change job</p>
-    <mat-form-field appearance="fill">
-      <mat-label>Job</mat-label>
-      <input matInput formControlName="job">
-    </mat-form-field>
-    </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Job</mat-label>
+        <input matInput formControlName="job">
+      </mat-form-field>
   </div>
+
   <div mat-dialog-actions class="form__button">
     <button mat-raised-button (click)="modalClose()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="formSubmit()" [disabled]="!!form.invalid" cdkFocusInitial>Update</button>
+    <button mat-raised-button color="primary" (click)="formSubmit()" [disabled]="!!form.invalid" cdkFocusInitial>
+      Update
+    </button>
   </div>
 </form>
 <ng-container *ngIf="changeUserData$ | async"></ng-container>

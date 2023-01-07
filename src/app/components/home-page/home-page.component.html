@@ -1,6 +1,7 @@
 <ng-container *ngIf="usersData$ | async as usersData">
   <div class="container">
     <div class="container__cards">
+
       <div class="container__user">
         <app-preview-user *ngFor="let user of usersData.data" [user]="user"></app-preview-user>
         <div class="pagination">
@@ -10,7 +11,9 @@
           >
             <img class="arrow__left arrow" src="../../../assets/arrow_right.svg" alt="arrow_left">
           </button>
+
           <div class="pagination__number_page">{{usersData.page}}</div>
+
           <button class="pagination__button"
                   [disabled]="usersData.page === usersData.total_pages"
                   (click)="nextPage()"
@@ -25,6 +28,7 @@
           <app-preview-resource *ngFor="let resource of resourceData.data" [resource]="resource"></app-preview-resource>
         </ng-container>
       </div>
+
     </div>
   </div>
 </ng-container>

@@ -3,11 +3,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 import {DataService} from "../../../services/data.service";
 import {UserDetailsResponseInterface} from "../../../interfaces/userDetailsResponse.interface";
 import {ChangeUserDataInterface} from "../../../interfaces/changeUserData.interface";
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-modal-window',
