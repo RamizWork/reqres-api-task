@@ -7,14 +7,14 @@ import {MainLayoutComponent} from "./components/main-layout/main-layout.componen
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
-      {path: 'user/:id', component: UserPageComponent}
+      {path: 'user/:id', component: UserPageComponent},
     ]
   },
   {
     path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
-  }
+  },
+  {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({
