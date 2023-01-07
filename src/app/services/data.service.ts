@@ -7,6 +7,8 @@ import {ListResourcesInterface} from "../interfaces/listResources.interface";
 import {UsersResponseInterface} from "../interfaces/usersResponse.interface";
 import {UserDetailsResponseInterface} from "../interfaces/userDetailsResponse.interface";
 import {ChangeUserDataInterface} from "../interfaces/changeUserData.interface";
+import {SingUpResponseInterface} from "../interfaces/singUpResponse.interface";
+import {SingInResponseInterface} from "../interfaces/singInResponse.Interface";
 
 @Injectable()
 export class DataService {
@@ -78,5 +80,21 @@ export class DataService {
 
   getUserDetails(): Observable<UserDetailsResponseInterface | null> {
     return this.usersData$.asObservable();
+  }
+
+  singUp(email: string, password: string): Observable<SingUpResponseInterface> {
+    const userData = {
+      email: email,
+      password: password
+    }
+    return this.http.post<SingUpResponseInterface>(`https://reqres.in/api/register`, userData);
+  }
+
+  singIn(email: string, password: string): Observable<SingInResponseInterface> {
+    const userData = {
+      email: email,
+      password: password
+    }
+    return this.http.post<SingInResponseInterface>(`https://reqres.in/api/login`, userData);
   }
 }

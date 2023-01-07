@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="description">
+
+    <div class="description__title">
+      <p>Notice:</p>
+    </div>
+    <div class="description__text">
+      <p><strong>login:</strong> eve.holt@reqres.in</p>
+      <p><strong>password:</strong> cityslicka</p>
+    </div>
+  </div>
+  <h2 class="title__sing-in">Sing-in</h2>
+  <form action="" [formGroup]="form" (ngSubmit)="formSubmit()">
+    <mat-card>
+      <p class="form__title">Sing in form</p>
+      <div class="form__input_wrapper">
+
+        <mat-form-field appearance="outline" [ngStyle]="{'width.%': 100}">
+          <mat-label>Email</mat-label>
+          <input class="form__input" matInput placeholder="Enter email" formControlName="email">
+          <mat-hint class="form__input_error" *ngIf="form.get('email').invalid && form.get('email').touched">
+            <small class="form__input_error" *ngIf="form.get('email').errors.email">Enter correctly email</small>
+            <small class="form__input_error" *ngIf="form.get('email').errors.required">Field email not be empty</small>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline" [ngStyle]="{'width.%': 100}">
+          <mat-label>Password</mat-label>
+          <input class="form__input" matInput placeholder="Enter password" formControlName="password" type="password">
+          <mat-hint class="form__input_error" *ngIf="form.get('password').invalid && form.get('password').touched">
+            <small class="form__input_error" *ngIf="form.get('password').errors.required">Field email not be
+              empty</small>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="form__button_wrapper">
+        <button mat-raised-button (click)="goHomePage()" [ngStyle]="{'margin-right.px': 10}">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!!form.invalid">Sing in</button>
+      </div>
+    </mat-card>
+  </form>
+</div>
+<ng-container *ngIf="singInResponse$ | async"></ng-container>
+
