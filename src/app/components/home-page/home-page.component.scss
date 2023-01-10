@@ -21,7 +21,7 @@
   }
 
   .pagination {
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     align-items: center;
 
@@ -30,21 +30,22 @@
       justify-content: center;
       margin: 0 10px;
       font-size: 17px;
-      color: #4949ef;
+      color: rgb(93, 92, 92);
     }
 
     .pagination__button {
+      margin-left: 5px;
       height: 40px;
       width: 40px;
       border-radius: 8px;
       border: 1px solid #d2d2d2;
+      cursor: pointer;
     }
 
     .arrow {
-      cursor: pointer;
       align-items: center;
       border: none;
-      height: 8px;
+      height: 12px;
       width: 14px;
     }
 

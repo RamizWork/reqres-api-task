@@ -5,14 +5,13 @@
       <div class="container__user">
         <app-preview-user *ngFor="let user of usersData.data" [user]="user"></app-preview-user>
         <div class="pagination">
+          <div class="pagination__number_page">{{'Page'}} {{usersData.page}} {{'of'}} {{usersData.total_pages}}</div>
           <button class="pagination__button"
                   [disabled]="usersData.page === 1"
                   (click)="previewPage()"
           >
             <img class="arrow__left arrow" src="../../../assets/arrow_right.svg" alt="arrow_left">
           </button>
-
-          <div class="pagination__number_page">{{usersData.page}}</div>
 
           <button class="pagination__button"
                   [disabled]="usersData.page === usersData.total_pages"
