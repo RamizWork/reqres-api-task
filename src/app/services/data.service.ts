@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
-import {tap} from "rxjs/operators";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {catchError, tap} from "rxjs/operators";
 
 import {ListResourcesInterface} from "../interfaces/listResources.interface";
 import {UsersResponseInterface} from "../interfaces/usersResponse.interface";
@@ -9,6 +9,8 @@ import {UserDetailsResponseInterface} from "../interfaces/userDetailsResponse.in
 import {ChangeUserDataInterface} from "../interfaces/changeUserData.interface";
 import {SingUpResponseInterface} from "../interfaces/singUpResponse.interface";
 import {SingInResponseInterface} from "../interfaces/singInResponse.Interface";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class DataService {
@@ -16,7 +18,7 @@ export class DataService {
   usersData$: BehaviorSubject<UserDetailsResponseInterface | null> = new BehaviorSubject<UserDetailsResponseInterface | null>(null);
   isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) {
   }
 
   loadUsersDataFromApi(currentPage?: number): Observable<UsersResponseInterface> {
@@ -48,6 +50,11 @@ export class DataService {
       .pipe(
         tap((value) => {
           this.usersData$.next(value);
+        }),
+        catchError(error => {
+          this.toastr.error('User not found');
+          this.router.navigate(['/']);
+          return of(error);
         })
       );
   }
