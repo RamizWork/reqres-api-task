@@ -18,8 +18,9 @@ import {PreviewResourceComponent} from './components/home-page/preview-resource/
 import {ModalWindowComponent} from './components/user-page/modal-window/modal-window.component';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {UserPageComponent} from './components/user-page/user-page.component';
-import {MainLayoutComponent} from './components/main-layout/main-layout.component';
-import { HeaderComponent } from './components/header/header.component';
+import {HeaderComponent} from './components/header/header.component';
+import {SingInComponent} from "./components/sing-in/sing-in.component";
+import {SingUpComponent} from "./components/sing-up/sing-up.component";
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { HeaderComponent } from './components/header/header.component';
     PreviewUserComponent,
     PreviewResourceComponent,
     ModalWindowComponent,
-    MainLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    SingInComponent,
+    SingUpComponent
   ],
   imports: [
     BrowserModule,

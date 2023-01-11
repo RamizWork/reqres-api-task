@@ -4,15 +4,22 @@
     <a class="header__link" mat-button color="primary" [routerLink]="['']">Home</a>
   </div>
 
-  <ul class="nav__list_wrapper">
-    <li class="nav_list">
-      <a class="nav_list_link link__text_color" routerLinkActive="active" mat-button color="primary"
-         [routerLink]="['admin', 'login']">Sing in</a>
-    </li>
-    <li class="nav_list">
-      <a class="nav_list_link link__text_color" routerLinkActive="active" mat-button color="primary"
-         [routerLink]="['admin', 'register']">Sing up</a>
-    </li>
-  </ul>
+  <div *ngIf="isAuthenticated$ | async as authenticated; else isNotAuthenticated">
+    <a class="nav_list_link color-text-logout" mat-button color="primary" (click)="logout()"
+       [routerLink]="['/']">Logout</a>
+  </div>
+
+  <ng-template #isNotAuthenticated>
+    <ul class="nav__list_wrapper">
+      <li class="nav_list">
+        <a class="nav_list_link link__text_color" routerLinkActive="active" mat-button color="primary"
+           [routerLink]="['sing-in']">Sing in</a>
+      </li>
+      <li class="nav_list">
+        <a class="nav_list_link link__text_color" routerLinkActive="active" mat-button color="primary"
+           [routerLink]="['sing-up']">Sing up</a>
+      </li>
+    </ul>
+  </ng-template>
 
 </div>

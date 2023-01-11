@@ -14,6 +14,7 @@ import {SingInResponseInterface} from "../interfaces/singInResponse.Interface";
 export class DataService {
   usersDataFromApi$: BehaviorSubject<UsersResponseInterface | null> = new BehaviorSubject<UsersResponseInterface | null>(null);
   usersData$: BehaviorSubject<UserDetailsResponseInterface | null> = new BehaviorSubject<UserDetailsResponseInterface | null>(null);
+  isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
   }
@@ -87,7 +88,14 @@ export class DataService {
       email: email,
       password: password
     }
-    return this.http.post<SingUpResponseInterface>(`https://reqres.in/api/register`, userData);
+    return this.http.post<SingUpResponseInterface>(`https://reqres.in/api/register`, userData)
+      .pipe(
+        tap((response) => {
+            DataService.setToken(response.token);
+            this.isAuthenticated$.next(true);
+          }
+        )
+      );
   }
 
   singIn(email: string, password: string): Observable<SingInResponseInterface> {
@@ -95,6 +103,33 @@ export class DataService {
       email: email,
       password: password
     }
-    return this.http.post<SingInResponseInterface>(`https://reqres.in/api/login`, userData);
+    return this.http.post<SingInResponseInterface>(`https://reqres.in/api/login`, userData)
+      .pipe(
+        tap(response => {
+            DataService.setToken(response.token);
+            this.isAuthenticated$.next(true);
+          }
+        )
+      );
+  }
+
+  getAuthenticated(): BehaviorSubject<boolean> {
+    return this.isAuthenticated$;
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.isAuthenticated$.next(false);
+  }
+
+  private static setToken(tokenResponse: string | undefined) {
+    const token = tokenResponse;
+
+    if (token) {
+      localStorage.setItem('token', token);
+
+    } else {
+      localStorage.clear();
+    }
   }
 }

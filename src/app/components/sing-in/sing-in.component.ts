@@ -5,8 +5,8 @@ import {Observable, of} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 
-import {DataService} from "../../../services/data.service";
-import {SingInResponseInterface} from "../../../interfaces/singInResponse.Interface";
+import {DataService} from "../../services/data.service";
+import {SingInResponseInterface} from "../../interfaces/singInResponse.Interface";
 
 @Component({
   selector: 'app-sing-in',
